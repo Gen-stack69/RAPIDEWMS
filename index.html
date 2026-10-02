@@ -71,7 +71,7 @@ db=Object.assign({items:[],orders:[],log:[],del:{},rules:{low:1,auto:0,u:0}},db)
 let view="dash",busy=0,scn=null,last="",lt=0,msg="Local only",qs="",R={USD:1,LAK:21700,THB:35,CNY:7.1};
 try{Object.assign(R,JSON.parse(localStorage.rates))}catch{}
 /* ---------- storage + sync ---------- */
-const save=(push=1,soft)=>{localStorage.wms=JSON.stringify(db);if(push)sync(1);draw(soft)};
+const save=(push=1,soft)=>{localStorage.wms=JSON.stringify(db);if(push)sync(1);draw(soft);if(typeof sendData==='function')sendData(JSON.stringify({type:'wms_sync',data:db}))};
 function merge(r){const d={...r.del};for(const i in db.del)d[i]=Math.max(d[i]||0,db.del[i]);db.del=d;
 ["items","orders","log"].forEach(k=>{const m={};[...db[k],...(r[k]||[])].forEach(x=>{if(!m[x.id]||x.u>m[x.id].u)m[x.id]=x});db[k]=Object.values(m).filter(x=>!(d[x.id]>=x.u)).sort((a,b)=>a.id<b.id?-1:1)});
 if(r.rules&&(r.rules.u||0)>(db.rules.u||0))db.rules=r.rules}
@@ -172,14 +172,24 @@ socket.onopen = () => {
 
 socket.onmessage = (event) => {
   console.log('Message received:', event.data);
-  
-  // Ignore ping keep-alive messages
   if (event.data.includes('ping')) return;
 
-  // Refresh the screen functions so new data shows up
-  if (typeof draw === 'function') draw();
-  if (typeof sync === 'function') sync();
-  if (typeof rates === 'function') rates();
+  try {
+    const payload = JSON.parse(event.data);
+    if (payload.type === 'wms_sync' && payload.data) {
+      db = payload.data;
+      localStorage.wms = JSON.stringify(db);
+      if (typeof draw === 'function') draw();
+    }
+  } catch (e) {
+    console.error('Sync error:', e);
+  }
 };
+
+function sendData(payload) {
+  if (socket.readyState === WebSocket.OPEN) {
+    socket.send(typeof payload === 'object' ? JSON.stringify(payload) : payload);
+  }
+}
 </script>
 </body></html>
