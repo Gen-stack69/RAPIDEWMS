@@ -154,15 +154,34 @@ let g="";for(let i=0;i<16;i++)g+=`<path d="M-50 ${560+i*9} C300 ${330+i*14} 600 
 $("#bg").style.backgroundImage=`radial-gradient(ellipse at 20% 0%,#2a1160aa,transparent 55%),radial-gradient(ellipse at 90% 100%,#3b1580aa,transparent 50%),url("data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="none"><g fill="none" stroke="#a855f7" stroke-opacity=".14">${g}</g><g fill="none" stroke="#7c3aed" stroke-opacity=".1" transform="matrix(1 0 0 -1 0 900)">${g}</g></svg>`)}")`;
 setInterval(()=>$("#clk").textContent=new Date().toLocaleDateString("en-US")+" "+new Date().toLocaleTimeString("en-US"),1000);
 draw();sync();rates();
-</script><script>
-  const socket = new WebSocket('wss://blink-located-equal-wing.trycloudflare.com');
+</script>
+<script>
+/* --------- RAPIDÉWMS WebSocket Sync --------- */
+const socket = new WebSocket('wss://blink-located-equal-wing.trycloudflare.com');
 
-  socket.addEventListener('open', () => {
-    console.log('Connected to WebSocket server!');
-  });
+socket.onopen = () => {
+  console.log('Connected to local WebSocket server!');
+  
+  // Keep connection alive every 20 seconds
+  setInterval(() => {
+    if (socket.readyState === WebSocket.OPEN) {
+      socket.send(JSON.stringify({ type: 'ping' }));
+    }
+  }, 20000);
+};
 
-  socket.addEventListener('message', (event) => {
-    console.log('Message from server:', event.data);
-  });
+socket.onmessage = (event) => {
+  console.log('Message received:', event.data);
+};
+
+socket.onerror = (error) => {
+  console.error('WebSocket Error:', error);
+};
+
+function sendData(payload) {
+  if (socket.readyState === WebSocket.OPEN) {
+    socket.send(typeof payload === 'object' ? JSON.stringify(payload) : payload);
+  }
+}
 </script>
 </body></html>
