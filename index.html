@@ -155,7 +155,7 @@ $("#bg").style.backgroundImage=`radial-gradient(ellipse at 20% 0%,#2a1160aa,tran
 setInterval(()=>$("#clk").textContent=new Date().toLocaleDateString("en-US")+" "+new Date().toLocaleTimeString("en-US"),1000);
 draw();sync();rates();
 </script><script>
-  const socket = new WebSocket('wss://wild-rockets-hammer.loca.lt');
+  const socket = new WebSocket('wss://blink-located-equal-wing.trycloudflare.com');
 
   socket.addEventListener('open', () => {
     console.log('Connected to WebSocket server!');
