@@ -1,0 +1,168 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#07050f"><title>RAPIDÉWMS</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23120a2a'/%3E%3Ctext x='17' y='49' font-size='46' font-family='Georgia,serif' font-style='italic' fill='%23c4b5fd'%3ER%3C/text%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box;margin:0}
+html{-webkit-text-size-adjust:100%}#bg{position:fixed;inset:0;z-index:-1;background:#06040d center/cover}body{background:#06040d;color:#ece8f8;font:15px system-ui,-apple-system,Segoe UI,Roboto,sans-serif;min-height:100vh}
+label{display:block;font-size:12px;color:#9a90bd;margin-bottom:10px}label input{margin-top:4px}
+header{display:flex;align-items:center;gap:12px;padding:14px 4vw;border-bottom:1px solid #1d1538;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;margin-right:auto}
+.brand h1{font-size:22px}.brand em{color:#a78bfa;font-style:normal}
+.pill{font-size:11px;padding:3px 9px;border-radius:99px;background:#2a1a5a;border:1px solid #5b3fb5;margin-left:8px;vertical-align:middle;font-weight:400}
+.clk{font-size:13px;color:#b9b0d6}.clk:before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;margin-right:6px}
+.btn,.b,.g{border:1px solid #33265f;background:#120d26;color:#ece8f8;border-radius:10px;padding:10px 16px;font:inherit;font-size:14px;cursor:pointer;display:inline-flex;gap:8px;align-items:center;margin:0}
+.b{background:#6d33e8;border-color:#8b5cf6;font-weight:600;box-shadow:0 0 18px #7c3aed55}
+.g:hover,.btn:hover{border-color:#8b5cf6}
+.user{display:flex;gap:10px;align-items:center;border:1px solid #33265f;background:#120d26;border-radius:12px;padding:8px 14px;font-size:14px}
+.user i{width:34px;height:34px;border-radius:50%;background:#8b3df0;display:grid;place-items:center;font-style:normal;font-weight:700;font-size:13px}
+.user small{display:block;color:#9a90bd;font-size:11px}
+.wrap{display:grid;grid-template-columns:300px minmax(0,1fr);gap:26px;padding:26px 4vw;max-width:1500px;margin:auto}.wrap>*{min-width:0}
+.card{background:rgba(14,10,28,.82);border:1px solid #22193f;border-radius:18px;padding:20px}
+nav a{display:flex;align-items:center;gap:14px;padding:13px 14px;border-radius:12px;color:#d8d2ee;cursor:pointer;border:1px solid transparent;white-space:nowrap}
+nav a.on{background:#1b1240;border-color:#8b5cf6;box-shadow:0 0 14px #7c3aed44}
+nav a i{font-style:normal;width:22px;text-align:center;color:#a78bfa}
+nav a em{margin-left:auto;font-style:normal;font-size:12px;border:1px solid #33265f;border-radius:99px;padding:3px 10px;background:#120d26}
+nav h6{font-size:12px;letter-spacing:1px;color:#9a90bd;margin:0 0 12px 8px;font-weight:500}
+.eng{margin-top:18px;font-size:13px;color:#9a90bd}.eng div{display:flex;justify-content:space-between;margin-bottom:10px;font-size:14px;color:#cfc8ea}.eng b{color:#a78bfa;font-weight:500}
+.bar{height:5px;background:#1d1538;border-radius:9px;margin-bottom:10px;display:block}.bar i{display:block;height:100%;width:6%;background:#a855f7;border-radius:9px}
+main>*+*{margin-top:22px}
+.top{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}.top h2{font-size:28px}.top p{color:#b9b0d6;margin-top:6px}.top .r{display:flex;gap:12px;flex-wrap:wrap}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.stats .card{padding:18px}
+.sh{display:flex;justify-content:space-between;color:#cfc8ea;font-size:14px}.ic{width:36px;height:36px;border-radius:8px;display:grid;place-items:center;background:#2a1a5a;border:1px solid #5b3fb5;font-style:normal}
+.n{display:block;font-size:clamp(18px,4.6vw,34px);margin:10px 0 6px;font-weight:600;overflow-wrap:anywhere}.stats small{color:#b9b0d6}
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:22px}h3{display:flex;justify-content:space-between;align-items:baseline;font-size:19px}h3 small{font-size:13px;color:#b9b0d6;font-weight:400}
+.ts{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:10px 8px;border-bottom:1px solid #1d1538;white-space:nowrap}th{color:#9a90bd;font-weight:500;font-size:12px}
+input,select{background:#0b0718;border:1px solid #33265f;border-radius:10px;color:#ece8f8;padding:10px 12px;font:inherit;width:100%;min-width:0}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.row>*{flex:1 1 140px}.row>.b,.row>.g{flex:0 0 auto}
+dialog{background:#0e0a1c;color:#ece8f8;border:1px solid #5b3fb5;border-radius:18px;padding:22px;width:min(440px,92vw);margin:auto}dialog::backdrop{background:#000a}
+.tag{padding:2px 9px;border-radius:99px;font-size:12px;background:#1b1240}.in{color:#4ade80}.out{color:#fb923c}.warn{color:#fbbf24}
+#rd{width:100%;max-width:420px;margin:12px auto;border-radius:12px;overflow:hidden}
+.mut{color:#9a90bd;font-size:13px}.mt{margin-top:14px}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.6 ui-monospace,monospace;color:#cfc8ea}
+#menu{display:none;position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:5;border-radius:99px}
+@media(max-width:900px){.wrap{grid-template-columns:minmax(0,1fr);gap:16px;padding:16px 4vw}.eng{margin-top:12px}.stats{grid-template-columns:1fr 1fr;gap:12px}.charts{grid-template-columns:1fr}.top h2{font-size:22px}#menu{display:inline-flex}}
+@media(max-width:700px){header{padding:12px 4vw;gap:10px}.brand{flex:1 1 100%}.btn{flex:1 1 auto;justify-content:center;padding:10px 8px;font-size:13px}.user{flex:1 1 100%}.card{padding:14px}.top .r{width:100%}.top .r>*{flex:1 1 auto;justify-content:center}.sh{font-size:12px;gap:6px}.ic{width:30px;height:30px;flex:none}.rt thead{display:none}.rt,.rt tbody{display:block}.rt tr{display:block;padding:10px 0;border-bottom:1px solid #1d1538}.rt td{display:flex;justify-content:space-between;gap:12px;border:0;padding:4px 2px;white-space:normal;text-align:right}.rt td:before{content:attr(data-l);color:#9a90bd;font-size:12px;text-align:left}.rt td.act{justify-content:flex-end;flex-wrap:wrap}.rt td.act:before{content:none}}
+</style></head><body><div id="bg"></div>
+<header><div class="brand"><svg width="46" height="46" viewBox="0 0 48 48"><text x="9" y="38" font-size="40" font-family="Georgia,serif" font-style="italic" fill="#fff">R</text><path d="M7 6l1.6 4.4L13 12l-4.4 1.6L7 18l-1.6-4.4L1 12l4.4-1.6z" fill="#c4b5fd"/></svg><div><h1>RAPIDÉ<em>WMS</em><span class="pill">PRO v2.4</span></h1><div class="clk" id="clk"></div></div></div>
+<button class="btn hs" onclick="go('scan')">▥ Handheld Scanner</button><button class="btn hs" onclick="zip()">⬇ Export .ZIP Bundle</button>
+<div class="user"><i>WM</i><div>Warehouse Manager<small>Facility Main A</small></div></div></header>
+<div class="wrap"><div><nav class="card" id="nav"></nav><div class="card eng" id="eng"></div></div><main id="main"></main></div>
+<dialog id="dlg"></dialog>
+<button id="menu" class="b" onclick="scrollTo({top:0,behavior:'smooth'})">☰ Menu</button>
+<script src="https://cdn.jsdelivr.net/npm/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.8.2/dist/jspdf.plugin.autotable.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+<script>
+const $=s=>document.querySelector(s),E=s=>String(s??"").replace(/[&<>"']/g,c=>"&#"+c.charCodeAt(0)+";"),uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6),now=()=>Date.now();
+const fmt=n=>"₭"+(+n||0).toLocaleString("en",{minimumFractionDigits:2,maximumFractionDigits:2}),dt=t=>new Date(t).toLocaleString();
+const P=["#8b5cf6","#22d3ee","#f472b6","#fbbf24","#34d399","#fb923c"],CUR=["LAK","THB","USD","CNY"];
+const N=[["dash","Dashboard & Analytics","◔"],["inv","Inventory & SKUs","▦"],["ord","Orders & Shipments","⛟"],["scan","Handheld Scanner","▥"],["rep","Reports & Data Export","▤"],["auto","Automation & Rules","⚙"],["sys","System & Backup","☰"]];
+const SUB={dash:"Real-time stock valuation, unit metrics, and inventory log activity.",inv:"Add, edit and count every product and SKU.",ord:"Create inbound and outbound orders, then complete them to update stock.",scan:"Scan barcodes or QR codes to receive, ship or look up stock.",rep:"Export PDF, Excel or CSV and convert currencies.",auto:"Rules that watch your stock for you.",sys:"Sync your devices, back up and restore your data."};
+const SETUP=`ONE-TIME SETUP FOR SYNC (free, about 5 minutes)
+1. Go to console.firebase.google.com → Add project → Create.
+2. Build → Firestore Database → Create database → Start in test mode → Enable.
+3. Open the Rules tab, replace everything with the text below, then Publish:
+rules_version='2'; service cloud.firestore { match /databases/{d}/documents { match /{p=**} { allow read, write: if true; } } }
+4. Project settings (gear icon) → General → Your apps → Web (</>) → register app. Copy projectId and apiKey.
+5. Paste projectId|apiKey in the box above (a | between them) → Save & sync now.
+6. On your phone or any other device, open this same website URL and paste the same code.`;
+let db={};try{db=JSON.parse(localStorage.wms)}catch{}
+db=Object.assign({items:[],orders:[],log:[],del:{},rules:{low:1,auto:0,u:0}},db);
+let view="dash",busy=0,scn=null,last="",lt=0,msg="Local only",qs="",R={USD:1,LAK:21700,THB:35,CNY:7.1};
+try{Object.assign(R,JSON.parse(localStorage.rates))}catch{}
+/* ---------- storage + sync ---------- */
+const save=(push=1,soft)=>{localStorage.wms=JSON.stringify(db);if(push)sync(1);draw(soft)};
+function merge(r){const d={...r.del};for(const i in db.del)d[i]=Math.max(d[i]||0,db.del[i]);db.del=d;
+["items","orders","log"].forEach(k=>{const m={};[...db[k],...(r[k]||[])].forEach(x=>{if(!m[x.id]||x.u>m[x.id].u)m[x.id]=x});db[k]=Object.values(m).filter(x=>!(d[x.id]>=x.u)).sort((a,b)=>a.id<b.id?-1:1)});
+if(r.rules&&(r.rules.u||0)>(db.rules.u||0))db.rules=r.rules}
+const er=async r=>{let j={};try{j=await r.json()}catch{}return{m:r.status+" "+((j.error&&j.error.message)||"")}};
+const api=()=>{const[p,k]=(localStorage.cloud||"").trim().split("|");return p&&k&&`https://firestore.googleapis.com/v1/projects/${p}/databases/(default)/documents/wms/main?key=${k}`};
+async function sync(push){const a=api();if(!a||busy)return;busy=1;const before=localStorage.wms;
+try{const r=await fetch(a);let rs="";if(r.ok){rs=(await r.json()).fields.d.stringValue;merge(JSON.parse(rs))}else if(r.status!=404)throw await er(r);
+const s=JSON.stringify(db);localStorage.wms=s;
+if(push||s!==rs){const w=await fetch(a,{method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify({fields:{d:{stringValue:s}}})});if(!w.ok)throw await er(w)}
+msg="Cloud synced "+new Date().toLocaleTimeString()}catch(e){msg="Sync error – "+(e&&e.m||"check your internet, sync code and Firestore rules")}
+busy=0;draw(before==localStorage.wms||dlg.open)}
+setInterval(()=>document.hidden||sync(),8000);document.addEventListener("visibilitychange",()=>document.hidden||sync());
+/* ---------- stock logic ---------- */
+function adj(it,d,note){it.qty+=d;it.u=now();db.log.push({id:uid(),t:now(),sku:it.sku,type:d>0?"in":"out",qty:Math.abs(d),n:note||"",u:now()});
+if(db.rules.auto&&it.qty<it.min&&!db.orders.some(o=>o.sku==it.sku&&o.type=="in"&&o.st=="Pending"))db.orders.push({id:uid(),type:"in",sku:it.sku,qty:it.min*2-it.qty,party:"Auto-reorder",st:"Pending",d:now(),u:now()})}
+function rm(k,id){if(!confirm("Delete permanently?"))return;db[k]=db[k].filter(x=>x.id!=id);db.del[id]=now();save()}
+function aj(id,s){const it=db.items.find(x=>x.id==id),v=+prompt((s>0?"Add":"Remove")+" how many units of "+it.sku+"?","1");if(!v||v<0)return;if(s<0&&it.qty<v)return alert("Not enough stock");adj(it,s*v,"manual");save()}
+function skuForm(id,code){const i=db.items.find(x=>x.id==id)||{sku:code||"",bc:code||"",name:"",cat:"",qty:0,min:0,cost:0};
+dlg.innerHTML=`<h3>${id?"Edit":"Add New"} SKU</h3><div class="mt">${[["sku","SKU code"],["name","Product name"],["cat","Category"],["bc","Barcode / QR code (blank = SKU)"],["qty","Quantity in stock","number"],["min","Minimum stock","number"],["cost","Unit cost (LAK)","number"]].map(([k,l,t])=>`<label>${l}<input id="f_${k}" type="${t||"text"}" value="${E(i[k])}"></label>`).join("")}</div><div class="row"><button class="b" onclick="saveSku('${id||""}')">Save</button><button class="g" onclick="dlg.close()">Cancel</button></div>`;dlg.showModal()}
+function saveSku(id){const g=k=>$("#f_"+k).value.trim(),sku=g("sku"),name=g("name");if(!sku||!name)return alert("SKU code and product name are required");
+if(db.items.some(x=>x.id!=id&&x.sku.toLowerCase()==sku.toLowerCase()))return alert("This SKU already exists");
+let it=db.items.find(x=>x.id==id),q=+g("qty")||0;if(!it){it={id:uid(),qty:0};db.items.push(it)}
+Object.assign(it,{sku,name,cat:g("cat")||"General",bc:g("bc")||sku,min:+g("min")||0,cost:+g("cost")||0,u:now()});
+if(q!=it.qty)adj(it,q-it.qty,id?"edit":"initial");dlg.close();save()}
+function addOrd(){const sku=$("#o_s").value,q=+$("#o_q").value;if(!sku||q<1)return alert("Add a SKU first, then pick the item and a quantity");db.orders.push({id:uid(),type:$("#o_t").value,sku,qty:q,party:$("#o_p").value,st:"Pending",d:now(),u:now()});save()}
+function done(id){const o=db.orders.find(x=>x.id==id),it=db.items.find(x=>x.sku==o.sku);if(!it)return alert("SKU not found");if(o.type=="out"&&it.qty<o.qty)return alert("Not enough stock");adj(it,o.type=="in"?o.qty:-o.qty,"order");o.st="Done";o.u=now();save()}
+function reset(){if(!confirm("Erase ALL data on every synced device?")||!confirm("Are you really sure?"))return;["items","orders","log"].forEach(k=>{db[k].forEach(x=>db.del[x.id]=now());db[k]=[]});save()}
+/* ---------- scanner ---------- */
+async function cam(on){if(scn){try{await scn.stop()}catch{}scn=null}if(!on)return;if(!window.Html5Qrcode)return alert("Scanner needs internet the first time the page loads");
+scn=new Html5Qrcode("rd",{experimentalFeatures:{useBarCodeDetectorIfSupported:true}});
+try{await scn.start({facingMode:"environment"},{fps:12,qrbox:(w,h)=>({width:Math.floor(Math.min(w,420)*.88),height:Math.floor(Math.min(h,300)*.7)})},onScan,()=>{})}catch{scn=null;alert("Camera blocked. Allow camera permission for this site in your browser settings.")}}
+function onScan(c){c=String(c).trim();const n=now();if(!c||(c==last&&n-lt<2500))return;last=c;lt=n;navigator.vibrate&&navigator.vibrate(90);
+const it=db.items.find(i=>i.sku.toLowerCase()==c.toLowerCase()||i.bc==c),m=$("#mode").value,q=Math.max(1,+$("#sq").value||1);let h;
+if(!it)h=`<span class="warn">Unknown code <b>${E(c)}</b></span> <button class="g" onclick="skuForm(null,'${E(c)}')">Add as new SKU</button>`;
+else if(m=="out"&&it.qty<q)h=`<span class="warn">${E(it.sku)}: only ${it.qty} in stock</span>`;
+else{if(m!="look"){adj(it,m=="in"?q:-q,"scan");save(1,1)}h=`<span class="${m=="in"?"in":m=="out"?"out":""}">✔ ${E(it.name)} (${E(it.sku)}) ${m=="look"?"":(m=="in"?"+":"−")+q} → <b>${it.qty}</b> in stock</span>`}
+$("#res").insertAdjacentHTML("afterbegin",`<p style="margin-bottom:8px">${h}</p>`)}
+/* ---------- export / import ---------- */
+const sets=()=>({Inventory:[["SKU","Name","Category","Barcode","Qty","Min","Cost (LAK)","Value (LAK)"],...db.items.map(i=>[i.sku,i.name,i.cat,i.bc,i.qty,i.min,i.cost,i.qty*i.cost])],Orders:[["Date","Type","SKU","Qty","Party","Status"],...db.orders.map(o=>[dt(o.d),o.type=="in"?"Inbound":"Outbound",o.sku,o.qty,o.party,o.st])],Movements:[["Date","SKU","Type","Qty","Note"],...db.log.map(l=>[dt(l.t),l.sku,l.type=="in"?"In":"Out",l.qty,l.n])]});
+const csv=r=>r.map(x=>x.map(v=>`"${String(v??"").replace(/"/g,'""')}"`).join(",")).join("\n");
+function dl(b,n){const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=n;a.click()}
+function exp(k,f){const r=sets()[k];
+if(f=="csv")dl(new Blob(["\ufeff"+csv(r)],{type:"text/csv"}),k+".csv");
+else if(f=="xlsx"){if(!window.XLSX)return alert("Needs internet");const w=XLSX.utils.book_new();XLSX.utils.book_append_sheet(w,XLSX.utils.aoa_to_sheet(r),k);XLSX.writeFile(w,k+".xlsx")}
+else{if(!window.jspdf)return alert("Needs internet");const d=new jspdf.jsPDF({orientation:"landscape"});d.text("RAPIDÉWMS - "+k+" ("+new Date().toLocaleDateString()+")",14,14);d.autoTable({head:[r[0]],body:r.slice(1),startY:20});d.save(k+".pdf")}}
+async function zip(){if(!window.JSZip)return alert("Needs internet");const z=new JSZip(),s=sets();for(const k in s)z.file(k+".csv","\ufeff"+csv(s[k]));z.file("backup.json",JSON.stringify(db));dl(await z.generateAsync({type:"blob"}),"RAPIDEWMS-bundle.zip")}
+function imp(f,t){if(!f)return;const r=new FileReader();r.onload=()=>{try{if(t=="json")merge(JSON.parse(r.result));else r.result.replace(/^\ufeff/,"").split(/\r?\n/).slice(1).forEach(l=>{const[a,b,c,q,m,p]=l.split(",").map(s=>s.replace(/^"|"$/g,"").trim());if(a&&b&&!db.items.some(i=>i.sku==a)){const it={id:uid(),sku:a,name:b,cat:c||"General",bc:a,qty:0,min:+m||0,cost:+p||0,u:now()};db.items.push(it);if(+q)adj(it,+q,"import")}});save();alert("Imported")}catch{alert("Could not read this file")}};r.readAsText(f)}
+/* ---------- currency ---------- */
+const cur=s=>CUR.map(c=>`<option ${c==s?"selected":""}>${c}</option>`).join("");
+function conv(){const a=+$("#c_a").value||0,f=$("#c_f").value,t=$("#c_t").value;$("#c_r").textContent=`${a.toLocaleString()} ${f} = ${(a/R[f]*R[t]).toLocaleString(undefined,{maximumFractionDigits:2})} ${t}`}
+async function rates(){const m=t=>{const e=$("#c_m");if(e)e.textContent=t};try{const j=await(await fetch("https://open.er-api.com/v6/latest/USD")).json();["LAK","THB","CNY"].forEach(c=>R[c]=j.rates[c]);localStorage.rates=JSON.stringify(R);m("Live rates updated "+new Date().toLocaleString());if($("#c_r"))conv()}catch{m("Offline – using last saved rates")}}
+/* ---------- views ---------- */
+const irows=()=>{const s=qs.toLowerCase(),L=db.items.filter(i=>(i.sku+i.name+i.cat+i.bc).toLowerCase().includes(s));return L.length?L.map(i=>`<tr><td><b>${E(i.sku)}</b></td><td>${E(i.name)}</td><td>${E(i.cat)}</td><td class="${i.qty<i.min?"warn":""}">${i.qty}${i.qty<i.min?" ⚠":""}</td><td>${i.min}</td><td>${fmt(i.cost)}</td><td>${fmt(i.qty*i.cost)}</td><td><button class="g" onclick="aj('${i.id}',1)">＋</button> <button class="g" onclick="aj('${i.id}',-1)">－</button> <button class="g" onclick="skuForm('${i.id}')">✎</button> <button class="g" onclick="rm('items','${i.id}')">🗑</button></td></tr>`).join(""):`<tr><td colspan="8" class="mut">No items yet. Tap “Add New SKU” to add your first product.</td></tr>`};
+const V={
+dash(){const I=db.items,u=I.reduce((a,i)=>a+i.qty,0),lo=I.filter(i=>i.qty<i.min).length,val=I.reduce((a,i)=>a+i.qty*i.cost,0),c={};I.forEach(i=>c[i.cat]=(c[i.cat]||0)+i.qty);
+const ks=Object.keys(c).filter(k=>c[k]>0),tot=ks.reduce((a,k)=>a+c[k],0),inb=db.log.filter(l=>l.type=="in").reduce((a,l)=>a+l.qty,0),ob=db.log.filter(l=>l.type=="out").reduce((a,l)=>a+l.qty,0),v=[inb,ob,lo],mx=Math.max(1,...v);
+let off=0;const seg=ks.length?ks.map((k,j)=>{const l=c[k]/tot*238.76,s=`<circle r="38" cx="50" cy="50" fill="none" stroke="${P[j%6]}" stroke-width="22" stroke-dasharray="${l} 238.76" stroke-dashoffset="${-off}" transform="rotate(-90 50 50)"/>`;off+=l;return s}).join(""):`<circle r="38" cx="50" cy="50" fill="none" stroke="#2a1a5a" stroke-width="22"/>`;
+return `<div class="stats">${[["TOTAL SKUS",I.length,"Registered product items","▥",""],["TOTAL UNITS",u,"Physical stock quantity","▦",""],["LOW STOCK SKUS",lo,"Below minimum threshold","⚠","warn"],["TOTAL VALUATION",fmt(val),"Calculated inventory value","₭","in"]].map(([a,b,s,i,c])=>`<div class="card"><div class="sh">${a}<i class="ic">${i}</i></div><b class="n ${c}">${b}</b><small>${s}</small></div>`).join("")}</div>
+<div class="charts"><div class="card"><h3>Category Stock Breakdown<small>By Unit Quantity</small></h3><svg viewBox="0 0 100 100" style="width:min(260px,70%);display:block;margin:20px auto">${seg}<circle r="27" cx="50" cy="50" fill="#0b0718"/></svg><div class="mut" style="text-align:center">${ks.length?ks.map((k,j)=>`<span style="color:${P[j%6]}">■</span> ${E(k)} (${c[k]})`).join(" &nbsp; "):"■ Empty Stock"}</div></div>
+<div class="card"><h3>Inventory Movement Log<small>Inbound vs Outbound</small></h3><div style="display:flex;align-items:flex-end;gap:8%;height:200px;margin:20px 0 8px;padding:0 6%;border-bottom:1px solid #33265f;background:repeating-linear-gradient(#1d153866 0 1px,transparent 1px 40px)">${v.map((x,j)=>`<div style="flex:1;height:${x/mx*100}%;min-height:2px;background:${["#4ade80","#fb923c","#fbbf24"][j]};border-radius:6px 6px 0 0"></div>`).join("")}</div><div class="mut" style="display:flex;justify-content:space-around;text-align:center;gap:6px"><span>Inbound Received (${inb})</span><span>Outbound Shipped (${ob})</span><span>Low Stock Items (${lo})</span></div></div></div>`},
+inv(){return `<div class="card"><input placeholder="Search SKU, name, category…" value="${E(qs)}" oninput="qs=this.value;$('#tb').innerHTML=irows();lab()"></div><div class="card ts"><table class="rt"><thead><tr><th>SKU</th><th>NAME</th><th>CATEGORY</th><th>QTY</th><th>MIN</th><th>UNIT COST</th><th>VALUE</th><th></th></tr></thead><tbody id="tb">${irows()}</tbody></table></div>`},
+ord(){const o=[...db.orders].sort((a,b)=>b.d-a.d);return `<div class="card"><div class="row"><select id="o_t"><option value="in">Inbound (receive shipment)</option><option value="out">Outbound (ship order)</option></select><select id="o_s">${db.items.map(i=>`<option>${E(i.sku)}</option>`).join("")}</select><input id="o_q" type="number" min="1" placeholder="Quantity"><input id="o_p" placeholder="Supplier / Customer"><button class="b" onclick="addOrd()">Create order</button></div></div><div class="card ts"><table class="rt"><thead><tr><th>DATE</th><th>TYPE</th><th>SKU</th><th>QTY</th><th>PARTY</th><th>STATUS</th><th></th></tr></thead>${o.length?o.map(x=>`<tr><td>${dt(x.d)}</td><td><span class="tag ${x.type}">${x.type=="in"?"Inbound":"Outbound"}</span></td><td>${E(x.sku)}</td><td>${x.qty}</td><td>${E(x.party)}</td><td>${x.st}</td><td>${x.st=="Pending"?`<button class="g" onclick="done('${x.id}')">✔ Complete</button> `:""}<button class="g" onclick="rm('orders','${x.id}')">🗑</button></td></tr>`).join(""):`<tr><td colspan="7" class="mut">No orders yet.</td></tr>`}</table></div>`},
+scan(){return `<div class="card"><div class="row"><select id="mode"><option value="in">Receive (+ stock)</option><option value="out">Ship (− stock)</option><option value="look">Look up only</option></select><input id="sq" type="number" min="1" value="1" placeholder="Quantity per scan"></div><div class="row mt"><button class="b" onclick="cam(1)">📷 Start camera</button><button class="g" onclick="cam(0)">■ Stop camera</button></div><div id="rd"></div><input id="man" placeholder="Or type / use a USB or Bluetooth scanner, then press Enter" onkeydown="if(event.key=='Enter'){onScan(this.value);this.value=''}"><div id="res" class="mt"></div></div>`},
+rep(){const val=db.items.reduce((a,i)=>a+i.qty*i.cost,0);return `<div class="card"><h3>Export your data</h3>${["Inventory","Orders","Movements"].map(k=>`<div class="row mt"><b style="flex:1 1 120px">${k}</b><button class="g" onclick="exp('${k}','pdf')">PDF</button><button class="g" onclick="exp('${k}','xlsx')">Excel</button><button class="g" onclick="exp('${k}','csv')">CSV</button></div>`).join("")}</div>
+<div class="card"><h3>Currency converter</h3><div class="row mt"><input id="c_a" type="number" value="1" oninput="conv()"><select id="c_f" onchange="conv()">${cur("LAK")}</select><select id="c_t" onchange="conv()">${cur("USD")}</select></div><h2 id="c_r" class="mt"></h2><p class="mut mt">Stock value: ${CUR.map(c=>c+" "+Math.round(val/R.LAK*R[c]).toLocaleString()).join(" · ")}</p><button class="g mt" onclick="rates()">↻ Refresh live rates</button> <span class="mut" id="c_m"></span></div>`},
+auto(){const lo=db.items.filter(i=>i.qty<i.min);return `<div class="card"><h3>Automation rules</h3>${[["low","Show a low-stock alert on every screen"],["auto","Auto-create a draft inbound order when stock drops below the minimum (orders 2× the minimum)"]].map(([k,t])=>`<label class="row mt" style="font-size:15px;color:#ece8f8"><input type="checkbox" style="flex:0 0 22px;width:22px" ${db.rules[k]?"checked":""} onchange="db.rules.${k}=this.checked?1:0;db.rules.u=now();save()"><span style="flex:1 1 200px">${t}</span></label>`).join("")}</div><div class="card ts"><h3>Items below minimum (${lo.length})</h3><table>${lo.map(i=>`<tr><td><b>${E(i.sku)}</b></td><td>${E(i.name)}</td><td class="warn">${i.qty} / ${i.min}</td></tr>`).join("")||`<tr><td class="mut">Nothing is low right now.</td></tr>`}</table></div>`},
+sys(){return `<div class="card"><h3>Cloud sync – same data on every device</h3><p class="mut mt">${E(msg)}</p><label class="mt">Sync code (projectId|apiKey)<input id="cc" value="${E(localStorage.cloud||"")}" placeholder="my-project|AIza..."></label><div class="row"><button class="b" onclick="localStorage.cloud=$('#cc').value.trim();sync(1)">Save &amp; sync now</button><button class="g" onclick="navigator.clipboard&&navigator.clipboard.writeText(localStorage.cloud||'');alert('Copied')">Copy code</button></div><pre class="mt">${E(SETUP)}</pre></div>
+<div class="card"><h3>Backup &amp; import</h3><div class="row mt"><button class="g" onclick="dl(new Blob([JSON.stringify(db)]),'rapidewms-backup.json')">Download backup</button><label class="g">Restore backup<input type="file" accept=".json" hidden onchange="imp(this.files[0],'json')"></label><label class="g">Import SKUs (CSV)<input type="file" accept=".csv" hidden onchange="imp(this.files[0],'csv')"></label><button class="g" onclick="reset()">Erase all data</button></div><p class="mut mt">CSV columns (first row = headers): sku, name, category, qty, min, cost</p></div>`}};
+/* ---------- render ---------- */
+function draw(soft){const lo=db.items.filter(i=>i.qty<i.min).length,po=db.orders.filter(o=>o.st=="Pending").length;
+$("#nav").innerHTML=`<h6>NAVIGATION</h6><div>${N.map(([k,t,i])=>`<a class="${k==view?"on":""}" onclick="go('${k}')"><i>${i}</i>${t}${k=="inv"?`<em>${db.items.length}</em>`:k=="ord"?`<em>${po}</em>`:""}</a>`).join("")}</div>`;
+$("#eng").innerHTML=`<div>Database Engine<b>${localStorage.cloud?"☁ Cloud + Local":"⛁ LocalStorage"}</b></div><span class="bar"><i></i></span>${E(msg)}. Data stays saved until you delete it.`;
+if(soft||(view=="scan"&&scn))return;
+$("#main").innerHTML=`<div class="card top"><div><h2>${view=="dash"?"RAPIDÉWMS Dashboard":N.find(n=>n[0]==view)[1]}</h2><p>${SUB[view]}</p></div><div class="r"><button class="b" onclick="skuForm()">＋ Add New SKU</button><button class="g" onclick="go('scan',1)">📷 Quick Scan</button></div></div>${db.rules.low&&lo&&view!="auto"?`<div class="card warn">⚠ ${lo} SKU(s) below minimum stock</div>`:""}${V[view]()}`;
+if(view=="rep")conv();lab()}
+const lab=()=>document.querySelectorAll(".rt").forEach(t=>{const h=[...t.querySelectorAll("th")].map(x=>x.textContent);t.querySelectorAll("tbody tr").forEach(r=>{if(r.children.length<h.length)return;[...r.children].forEach((c,i)=>{c.dataset.l=h[i]||"";if(!h[i])c.classList.add("act")})})});
+async function go(v,c){await cam(0);view=v;draw();(innerWidth<=900?$("#main"):document.body).scrollIntoView();if(c)cam(1)}
+/* ---------- start ---------- */
+let g="";for(let i=0;i<16;i++)g+=`<path d="M-50 ${560+i*9} C300 ${330+i*14} 600 ${880-i*6} 900 ${560+i*5} S1400 ${280+i*10} 1700 ${430+i*8}"/>`;
+$("#bg").style.backgroundImage=`radial-gradient(ellipse at 20% 0%,#2a1160aa,transparent 55%),radial-gradient(ellipse at 90% 100%,#3b1580aa,transparent 50%),url("data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="none"><g fill="none" stroke="#a855f7" stroke-opacity=".14">${g}</g><g fill="none" stroke="#7c3aed" stroke-opacity=".1" transform="matrix(1 0 0 -1 0 900)">${g}</g></svg>`)}")`;
+setInterval(()=>$("#clk").textContent=new Date().toLocaleDateString("en-US")+" "+new Date().toLocaleTimeString("en-US"),1000);
+draw();sync();rates();
+</script><script>
+  const socket = new WebSocket('wss://wild-rockets-hammer.loca.lt');
+
+  socket.addEventListener('open', () => {
+    console.log('Connected to WebSocket server!');
+  });
+
+  socket.addEventListener('message', (event) => {
+    console.log('Message from server:', event.data);
+  });
+</script>
+</body></html>
