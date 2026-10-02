@@ -172,16 +172,14 @@ socket.onopen = () => {
 
 socket.onmessage = (event) => {
   console.log('Message received:', event.data);
-};
+  
+  // Ignore ping keep-alive messages
+  if (event.data.includes('ping')) return;
 
-socket.onerror = (error) => {
-  console.error('WebSocket Error:', error);
+  // Refresh the screen functions so new data shows up
+  if (typeof draw === 'function') draw();
+  if (typeof sync === 'function') sync();
+  if (typeof rates === 'function') rates();
 };
-
-function sendData(payload) {
-  if (socket.readyState === WebSocket.OPEN) {
-    socket.send(typeof payload === 'object' ? JSON.stringify(payload) : payload);
-  }
-}
 </script>
 </body></html>
